@@ -1,0 +1,4 @@
+cni_version: flannel
+cni: calico
+kubeversion: 1.28.2-00
+test: true
