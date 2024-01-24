@@ -1,10 +1,9 @@
+# vagranetes
+Combination of Vagrant and Ansible to spin up a Kubernetes cluster. Supporting different CNIs.
 
-[0;1;35;95m┌─[0;1;31;91m──[0;1;33;93m──[0;1;32;92m──[0;1;36;96m──[0;1;34;94m─┐[0m
-[0;1;31;91m│v[0;1;33;93mag[0;1;32;92mra[0;1;36;96mne[0;1;34;94mte[0;1;35;95ms│[0m
-[0;1;33;93m└─[0;1;32;92m──[0;1;36;96m──[0;1;34;94m──[0;1;35;95m──[0;1;31;91m─┘[0m
 
-# vagrant-ansible-kubernetes
-Combination of Vagrant and Ansible to spin up a Kubernetes cluster
+TODO:
+Add support for MetalLB and other 3rd ingress providers.
 
 ### Prerequisites
 - Vagrant
