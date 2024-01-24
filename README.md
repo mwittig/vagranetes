@@ -5,7 +5,15 @@ Combination of Vagrant and Ansible to spin up a Kubernetes cluster
 - Vagrant
 - Ansible
 
-### Define amount of nodes
+### Configuration
+#### Define CNI 
+in lib/vars/vars_file.yml
+```
+cni: calico
+cni: flannel
+```
+
+#### Define amount of nodes
 in Vagrantfile:
 ```
 N = 2
