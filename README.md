@@ -17,6 +17,12 @@ cni: calico
 cni: flannel
 ```
 
+#### Define Kubernetes version current default 1.28.2-00
+in lib/vars/vars_file.yml
+```
+kubeversion: 1.28.2-00
+```
+
 #### Define amount of nodes
 in Vagrantfile:
 ```
