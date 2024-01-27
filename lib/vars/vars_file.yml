@@ -1,2 +1,4 @@
 cni: calico
+cni_setting: calico
 kubeversion: 1.28.2-00
+cidr: 172.16.0.0/16
