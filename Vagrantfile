@@ -6,7 +6,7 @@ network = "192.168.56."
 kube_ver_setting = "1.28.2-00"
 
 # CNI Settings - flannel or calico supported
-cni_setting = "calico"
+cni_setting = "cilium"
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false

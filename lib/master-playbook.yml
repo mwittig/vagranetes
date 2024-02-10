@@ -57,9 +57,9 @@
       update_cache: yes
     vars:
       packages:
-        - kubelet=1.28.2-00
-        - kubeadm=1.28.2-00
-        - kubectl=1.28.2-00
+        - kubelet={{ kubeversion }}
+        - kubeadm={{ kubeversion }}
+        - kubectl={{ kubeversion }}
 
   - name: Configure containerd
     blockinfile:
@@ -104,6 +104,11 @@
     when: cni == 'flannel' 
 
   - name: Initialize the Kubernetes cluster using kubeadm
+    command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=10.244.0.0/16
+    when: cni == 'cilium' 
+
+
+  - name: Initialize the Kubernetes cluster using kubeadm
     command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=192.168.0.0/16
     when: cni == 'calico' 
 
@@ -120,6 +125,42 @@
       owner: vagrant
       group: vagrant
       mode: '0644'
+
+  - name: Install Cilium if cni == cilium
+    block:
+      - name: Curl current stable version
+        ansible.builtin.uri:
+          url: https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt
+          return_content: true
+        register: cilium_version
+
+      - name: Remove trailing newline character
+        set_fact:
+          cleaned_content: "{{ cilium_version.content | regex_replace('\n$', '') }}"
+
+      - name: Print cleaned content
+        debug:
+          var: cleaned_content
+
+      - name: Obtain cilium 
+        ansible.builtin.uri:
+          url: https://github.com/cilium/cilium-cli/releases/download/{{ cleaned_content }}/cilium-linux-amd64.tar.gz
+          dest: /home/vagrant/cilium.tar.gz
+
+      - name: Unarchive a file with extra options
+        ansible.builtin.unarchive:
+          src: /home/vagrant/cilium.tar.gz
+          dest: /usr/local/bin
+          remote_src: yes
+
+            #- name: set arch from CLI return(implement later)
+            #if [ "$(uname -m)" = "aarch64" ]; then CLI_ARCH=arm64; fi
+            # Keeping URL below while building out the rest
+            # url: https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-${CLI_ARCH}.tar.gz
+
+    when: cni == 'cilium'
+
+
 
   - name: Install calico if cni == calico
     block:
