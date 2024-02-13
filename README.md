@@ -4,6 +4,9 @@ Combination of Vagrant and Ansible to spin up a Kubernetes cluster. Supporting d
 
 TODO:
 Add support for MetalLB and other 3rd ingress providers.
+Restrict permissions on /home/vagrant/.kube/config
+Add Cilium Binary support 
+Request user input for CNI
 
 ### Prerequisites
 - Vagrant
