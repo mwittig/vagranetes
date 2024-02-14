@@ -5,7 +5,11 @@ network = "192.168.56."
 # Kubernetes Version
 kube_ver_setting = "1.28.2-00"
 
-# CNI Settings - flannel or calico supported
+# CNI Supported Settings - 
+# - 'flannel' Install flannel
+# - 'calico' Install calico
+# - 'cilium'  Install cilium using helm
+# - 'ciliumEXP' Install cilium CNI using the binary installer
 cni_setting = "cilium"
 
 Vagrant.configure("2") do |config|

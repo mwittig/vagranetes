@@ -6,7 +6,7 @@ TODO:
 Add support for MetalLB and other 3rd ingress providers.
 Restrict permissions on /home/vagrant/.kube/config
 Add Cilium Binary support 
-Request user input for CNI
+Request user input for CNI -- Dropped doesn't appear possible.
 
 ### Prerequisites
 - Vagrant
