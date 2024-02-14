@@ -118,6 +118,10 @@
         command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=10.244.0.0/16
         when: cni == 'cilium' 
 
+      - name: Initialize the Kubernetes cluster using kubeadm
+        command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=10.244.0.0/16
+        when: cni == 'ciliumEXP'
+
 
       - name: Initialize the Kubernetes cluster using kubeadm
         command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=192.168.0.0/16
@@ -193,6 +197,8 @@
           src: /home/vagrant/cilium.tar.gz
           dest: /usr/local/bin
           remote_src: yes
+        become: yes
+
 
       - name: Install cilium 
         ansible.builtin.shell: cilium install
