@@ -1,0 +1,9 @@
+2024-03-28:
+Google-hosted repositories went away March 4th 2024. 
+https://kubernetes.io/blog/2023/08/15/pkgs-k8s-io-introduction/
+Updated references to support community supported packages.
+
+Community packages uses a different location for kubeadm.conf this location was
+updated.
+
+https://kubernetes.io/blog/2023/08/31/legacy-package-repository-deprecation/
