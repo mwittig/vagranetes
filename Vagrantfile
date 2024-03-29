@@ -3,7 +3,7 @@ N = 2
 network = "192.168.56."
 
 # Kubernetes Version
-kube_ver_setting = "1.28.2-00"
+kube_ver_setting = "1.28.2-1.1"
 
 # CNI Supported Settings - 
 # - 'flannel' Install flannel
