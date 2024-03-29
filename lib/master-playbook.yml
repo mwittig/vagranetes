@@ -52,12 +52,12 @@
 
       - name: Add an apt signing key for Kubernetes
         apt_key:
-          url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+          url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key 
           state: present
 
       - name: Adding apt repository for Kubernetes
         apt_repository:
-          repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+          repo: deb https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
           state: present
           filename: kubernetes.list
 
@@ -107,7 +107,7 @@
 
       - name: Configure kubelet
         lineinfile:
-          path: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+          path: /lib/systemd/system/kubelet.service.d/10-kubeadm.conf
           line: Environment="KUBELET_EXTRA_ARGS=--node-ip={{ output.stdout }}"
 
       - name: Initialize the Kubernetes cluster using kubeadm
