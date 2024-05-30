@@ -11,6 +11,7 @@ kube_ver_setting = "1.28.2-1.1"
 # - 'cilium'  Install cilium using helm
 # - 'ciliumEXP' Install cilium CNI using the binary installer
 cni_setting = "cilium"
+cri_setting = "containerd"
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
@@ -28,6 +29,7 @@ Vagrant.configure("2") do |config|
             ansible.playbook = "lib/master-playbook.yml"
             ansible.extra_vars = {
               cni: cni_setting,
+              cri: cri_setting,
               kubeversion: kube_ver_setting
             }
         end
